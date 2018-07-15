@@ -21,7 +21,12 @@ import { createStore } from 'redux';
      type: 'RESET'
  });
 
-const store = createStore((state = {count: 0}, action) => { // the first arg is the default, the second is the action
+ // Reducers
+// 1. Reducers are pure functions - they only rely on the input
+// 2. Never change state or action
+
+
+const countReducer = (state = {count: 0}, action) => { // the first arg is the default, the second is the action
     switch (action.type) {
         case 'INCREMENT':
             return {
@@ -42,7 +47,9 @@ const store = createStore((state = {count: 0}, action) => { // the first arg is 
         default:
             return state;
     }
-});
+};
+
+const store = createStore(countReducer);
 
 const unsubscribe = store.subscribe(() => { // you subscribe a function to each state change // when we want to stop we call unsubscribe();
     console.log(store.getState());
