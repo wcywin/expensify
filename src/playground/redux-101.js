@@ -1,16 +1,35 @@
 import { createStore } from 'redux';
 
+// Action generators - functions that return action objects
+
+ const incrementCount = ({ incrementBy = 1} = {}) => ({ // we destructure the object passed in
+     type: 'INCREMENT',
+     incrementBy // as the object property and the variable are the same, we use the shorthand value
+ });
+
+ const decrementCount = ({ decrementBy = 1} = {}) => ({
+     type: 'DECREMENT',
+     decrementBy
+ });
+
+ const setCount = ({count} = {}) => ({
+     type: 'SET',
+     count
+ });
+
+ const resetCount = () => ({
+     type: 'RESET'
+ });
+
 const store = createStore((state = {count: 0}, action) => { // the first arg is the default, the second is the action
     switch (action.type) {
         case 'INCREMENT':
-            const incrementBy = typeof action.incrementBy === 'number' ? action.incrementBy : 1;
             return {
-                count: state.count + incrementBy
+                count: state.count + action.incrementBy
             };
         case 'DECREMENT':
-            const decrementBy = typeof action.decrementBy === 'number' ? action.decrementBy : 1;
             return {
-                count: state.count - decrementBy
+                count: state.count - action.decrementBy
             };
         case 'SET':
             return {
@@ -30,29 +49,16 @@ const unsubscribe = store.subscribe(() => { // you subscribe a function to each 
 });
 
 
-store.dispatch({
-    type: 'INCREMENT',
-    incrementBy: 5
-});
+store.dispatch(incrementCount({ incrementBy: 9 }));
 
-store.dispatch({
-    type: 'INCREMENT'
-});
+store.dispatch(incrementCount());
 
-store.dispatch({
-    type: 'DECREMENT',
-    decrementBy: 10
-});
+store.dispatch(incrementCount());
 
-store.dispatch({
-    type: 'RESET'
-});
+store.dispatch(decrementCount({ decrementBy: 15 }));
 
-store.dispatch({
-    type: 'DECREMENT'
-});
+store.dispatch(resetCount());
 
-store.dispatch({
-    type: 'SET',
-    count: 101
-});
+store.dispatch(decrementCount());
+
+store.dispatch(setCount({ count: -101 }));
