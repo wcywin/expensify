@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/playground/redux-expensify.js',
+    entry: './src/playground/hoc.js',
     output: {
         path: path.join(__dirname, 'public'),
         filename: 'bundle.js',
@@ -24,7 +24,7 @@ module.exports = {
     devtool: 'cheap-module-eval-source-map',
     devServer: {
         contentBase: path.join(__dirname, 'public'),
-        historyApiFallback: true // Give the main index.html page for all 404
+        historyApiFallback: true
     }
 };
 
