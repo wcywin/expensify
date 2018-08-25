@@ -4,6 +4,7 @@
   padding: $s-size;
   font-size: $font-size-large;
   font-weight: 300;
+  width: 100%;
 }
 
 .select {
@@ -13,4 +14,30 @@
 .textarea {
   @extend .text-input;
   height: 10rem;
+}
+
+.DateRangePicker {
+  @media (min-width: 380px) {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.DateRangePickerInput {
+  min-height: 50px;
+
+  @media (min-width: 380px) {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.DateInput_input {
+  min-height: 48px;
 }
